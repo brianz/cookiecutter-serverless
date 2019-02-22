@@ -1,8 +1,4 @@
-{%- if cookiecutter.serverless_version == '1.26.1' -%}
-NAME = "verypossible/serverless:{{cookiecutter.serverless_version}}-python3"
-{%- else -%}
-NAME = "verypossible/serverless:{{cookiecutter.serverless_version}}"
-{%- endif %}
+NAME = "brianz/serverless:{{cookiecutter.serverless_version}}"
 
 ENVDIR=envs
 SERVERLESS_DIR=serverless
@@ -12,12 +8,12 @@ SLS_ARGS=
 run = docker run --rm -it \
 		-v `pwd`:/code \
 		--env ENV=$(ENV) \
-		--env-file envs/$2 \
-		--name={{cookiecutter.project_name}}-$(ENV) $(NAME) $1
+		--env-file envs/$(ENV) \
+		--name={{cookiecutter.project_name|replace("_", "-")}}-$(ENV) $(NAME) $1
 
 
 shell : guard-ENV env-dir
-	$(call run,bash,$(ENV))
+	$(call run,bash)
 .PHONY: shell
 
 env-dir :
@@ -34,9 +30,9 @@ libs :
 	@test -d $(LIBS_DIR) || mkdir -p $(LIBS_DIR)
 	pip install -t $(LIBS_DIR) -r requirements.txt
 	rm -rf $(LIBS_DIR)/*.dist-info $(LIBS_DIR)/boto*
-	find $(LIBS_DIR) -name '*.pyc' | xargs rm
-	find $(LIBS_DIR) -name tests | xargs rm -rf
-	(cd $(SERVERLESS_DIR) && test -f package.json && npm install)
+	find $(LIBS_DIR) -name '*.pyc' | xargs -r rm
+	find $(LIBS_DIR) -name tests | xargs -r rm -rf
+	(cd $(SERVERLESS_DIR) && [ -f package.json ] && npm install || echo )
 .PHONY: libs
 
 # NOTE:

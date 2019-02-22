@@ -15,12 +15,12 @@ Cookiecutter 1.4.0 or higher)::
 
 Once you have `cookiecutter` installed, you can use this template to setup your Serverless project:
 
-    cookiecutter  https://github.com/verypossible/cookiecutter-serverless.git
+    cookiecutter  https://github.com/brianz/cookiecutter-serverless.git
 
 For usage, see the `README` which will be generated automatically.
 
 For more information on the overall layout and motivation, see:
 
-- [Serverless Docker image, used in this template](https://github.com/verypossible/serverless)
-- [A thorough explanation of this layout and reasoning behind it](https://verypossible.com/blog/structuring-serverless-applications-with-python)
+- [Serverless Docker image, used in this template](https://github.com/brianz/serverless)
+- [A thorough explanation of this layout and reasoning behind it](http://blog.brianz.bz/post/structuring-serverless-applications-with-python/)
 

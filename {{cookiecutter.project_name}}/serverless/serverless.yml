@@ -1,4 +1,4 @@
-service: {{cookiecutter.project_name}}
+service: {{ cookiecutter.project_name|replace("_", "-") }}
 
 provider:
   name: aws
@@ -73,16 +73,17 @@ package:
 #   make deploy function=function_name
 #
 # Note that a full deployment will re-deploy the layer due to the way that CloudFormation works.
+{% set layer_name = cookiecutter.project_name|lower|replace("-", "")|replace("_", "") %}
 layers:
-  {{cookiecutter.project_name|title}}Lib:
-    name: {{cookiecutter.project_name|title}}Lib-${env:ENV}
+  {{ layer_name }}Lib:
+    name: {{ layer_name|title }}Lib-${env:ENV}
     path: lib
 
 functions:
   hello:
     handler: handler.hello
     layers:
-      - Ref: {{cookiecutter.project_name|title}}LibLambdaLayer
+      - Ref: {{ layer_name|title }}LibLambdaLayer
 #    The following are a few example events you can configure
 #    Check the event documentation for details
 #       https://serverless.com/framework/docs/providers/aws/guide/events/
