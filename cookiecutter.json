@@ -1,5 +1,5 @@
 {
   "project_name": "example",
-  "serverless_version": ["1.46.0", "1.45.0", "1.42.2"],
+  "serverless_version": ["1.50.0", "1.49.0", "1.46.0"],
   "AWS_REGION": ["us-east-2", "us-east-1", "us-west-2"]
 }
