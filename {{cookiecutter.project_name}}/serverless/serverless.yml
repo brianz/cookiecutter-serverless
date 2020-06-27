@@ -5,7 +5,7 @@ provider:
   frameworkVersion: "={{cookiecutter.serverless_version}}"
   logRetentionInDays: 14
   region: ${env:AWS_REGION}
-  runtime: python3.6
+  runtime: python3.8
   stage: ${env:ENV}
   timeout: 6
   versionFunctions: false
